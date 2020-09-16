@@ -1,0 +1,37 @@
+import math
+def fun(x,y):
+    return math.sqrt(x+y)
+
+x = float(input("Enter x0"))
+y = float(input("Enter y0"))
+h = float(input("Enter h0"))
+n = int(input("Enter n"))
+k=[0,0,0,0]
+for i in range(n):
+    x0=x
+    y0=y
+    sumk=0
+    print("\n\n_______________________n=",i,"_______________________\n\n")
+    for j in range(4):
+        if (j==1):
+            x = x + h/2
+            y=y+(k[j-1]/2)
+        elif (j==2):
+            y=y+(k[j-1]/2)
+        elif(j==3):
+            x = x + h/2
+            y=y+k[j-1]
+        k[j] = h * fun(x,y)
+        print("x",i,"  =",x,"\n")
+        print("y",i,"  =",y,"\n")
+        print("k[",j+1,"] = ",k[j])
+        if (j==1 or j==2):
+            sumk = sumk + 2*k[j]
+        else:
+            sumk = sumk + k[j]
+    dy = float(1/6 * sumk)
+    print("\n\nDelta y = ",dy)
+    x = x0 + h
+    y = y0 + dy
+    print("x[",i+1,"] =",x)
+    print("y[",i+1,"] =",y)
